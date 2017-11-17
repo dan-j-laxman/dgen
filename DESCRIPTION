@@ -1,0 +1,11 @@
+Package: dgen
+Type: Package
+Title: Functions for Extracting and Combining Information Within Rows Across Columns
+Version: 0.1.0
+Author: Daniel J. Laxman
+Maintainer: Daniel J. Laxman <dan.j.laxman@gmail.com>
+Description: dgen is intended for use within the dplyr::mutate() function to create new variables. All funcitons extract and combine information within a row across columns (variables). Functions can be used to generate new variables from existing variables (allowing for some level of missing data), calculate the row mean of values for a set of variables (allowing for some level of missing data), and count the number of missing and non-missing values in a set of variables.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1

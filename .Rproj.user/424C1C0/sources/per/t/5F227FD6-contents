@@ -1,0 +1,59 @@
+#' Row Sum
+#'
+#' Sums values across variables (columns) within each row. Includes an option for handling missing data.
+#'
+#' @param ... Variables to be summed (no limit on number of variables, but must be numeric).
+#' @param n Maximum number of non-missing values allowed in order to compute a sum; default is 0. Missing values are treated as 0.
+#'
+#' @return Vector of length of each input variable.
+#'
+#' @export
+
+
+
+
+row_sum = function(..., n = 0){
+
+  x = ifelse(rowSums(is.na(cbind(...))) <= n,
+             rowSums(cbind(...), na.rm = TRUE),
+             NA)
+  x
+
+}
+
+
+#' Row Missing
+#'
+#' Counts the number of missing values across variables (columns) within each row.
+#'
+#' @param ... Variables over which to count missing values (no limit on number of variables)
+#' @return Vector of length of each input variable
+#'
+#' @export
+
+row_na =  function(...){
+
+  x = rowSums(is.na(cbind(...)))
+
+  return(x)
+
+}
+
+
+
+#' Row Non-Missing
+#'
+#' Counts the number of non-missing values across variables (columns) within each row.
+#'
+#' @param ... Variables over which to count non-missing values (no limit on number of variables)
+#' @return Vector of length of each input variable
+#'
+#' @export
+
+row_nm =  function(...){
+
+  x = rowSums(!is.na(cbind(...)))
+
+  return(x)
+
+}
