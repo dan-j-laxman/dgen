@@ -1,0 +1,11 @@
+"0","df1 %>% 
+  dplyr::select(lm1, lm2, lm3) %>% 
+  dplyr::mutate(lm_mean = dgen::row_means(lm1, lm2, lm3, n = 3))
+"
+"1","[1]"
+"1"," ""Number of missing variables allowed is equal to or exceeds number of variables."""
+"1","
+"
+"2","Error in mutate_impl(.data, dots) : 
+  Column `lm_mean` is of unsupported type NULL
+"

@@ -81,6 +81,9 @@ row_nm =  function(...){
 
 row_any_count =  function(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE){
 
+
+
+
   df = (data.frame(...))
 
   nmiss = rowSums(is.na(df))
@@ -143,6 +146,61 @@ row_any_count =  function(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE){
 
   final
 }
+
+
+#' Row Mean
+#'
+#' Calculates the average across variables (columns) within each row. Includes an option for handling missing data.
+#'
+#' @param ... Variables to be average (no limit on number of variables, but must be numeric).
+#' @param n Maximum number of non-missing values allowed in order to compute an average; default is 0. When n > 0, the mean for each case is calculated using the remaining variables with non-missing values.
+#'
+#' @return Vector of length of each input variable.
+#'
+#' @export
+
+
+row_means =  function(..., n = 0){
+
+  df = (data.frame(...))
+
+  nmiss = rowSums(is.na(df))
+  nvars = NCOL(df)
+
+  # n_minus_1 = n - 1
+  #
+  # n = ifelse(n >= nvars, n_minus_1,
+  #            ifelse(n < nvars & n >= 0, n,
+  #                   ifelse(n <= 0, 0, NA)))
+
+  if(n < 0){
+
+    warning = "Negative number of missing variables is not allowed."
+
+    print(warning)
+
+  }
+
+
+  if(n >= nvars){
+
+
+
+   warning = "Number of missing variables allowed is equal to or exceeds number of variables."
+
+   print(warning)
+
+  }
+
+  if(n < nvars & n >= 0){
+
+  x = (rowMeans(df, na.rm = TRUE))
+  x = ifelse(nmiss > n, NA, x)
+  x
+
+  }
+
+  }
 
 
 

@@ -218,5 +218,11 @@ df1 %>%
   dplyr::select(chm1, chm2, chm3, count_chm_is_rock)
 ```
 
+## Testing of row_means
 
+```{r}
+df1 %>% 
+  dplyr::select(lm1, lm2, lm3) %>% 
+  dplyr::mutate(lm_mean = dgen::row_means(lm1, lm2, lm3, n = 1))
+```
 
