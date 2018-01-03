@@ -1,0 +1,39 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+lm1 <- sample(c(1,2,3,4,5,6,7, NA), 1000, replace = TRUE)
+lm2 <- sample(c(1,2,3,4,5,6,7, NA), 1000, replace = TRUE)
+lm3 <- sample(c(1,2,3,4,5,6,7, NA), 1000, replace = TRUE)
+
+
+df <- data.frame(lm1, lm2,lm3)
+```
+
+
+<!-- asdf -->
+
+```{r}
+df %>% 
+  dplyr::mutate(lm1 = replace(lm1, lm1 < 2 | lm1 > 3 , NA))
+
+df %>% 
+  dplyr::mutate(lm1_r = ifelse(lm1 < 2, NA,
+                               ifelse(lm1 > 2 & lm1 < 5, lm1, NA)))
+
+%>% 
+  
+
+df %>%
+  dplyr::mutate(lm1_r = dplyr::case_when(lm1 == 1 ~ 1,
+                                         lm1 == 2 ~ 2,
+                                         lm1 == 3 ~ 3,                                                                         lm1 == 4 ~ 4,
+                                         lm1 == 5 ~ 5,                                                                         lm1 == 6 ~ 6,
+                                         lm1 == 7 ~ 6))
+
+```
+
+

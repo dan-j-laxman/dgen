@@ -63,7 +63,7 @@ row_nm =  function(...){
 #'
 #' Counts the number of variables (columns) equal to a specified value across variables within each row.
 #'
-#' @param ... Variables over which to count non-missing values (no limit on number of variables)
+#' @param ... Variables over which to count instances equal to value (no limit on number of variables)
 #' @param value Specified value to count; can be numeric or nominal or character
 #' @param ignoreNA Indicates whether missing values should be
 #' ignored while counting the number of specified values; default is ignoreNA = TRUE. However,
@@ -146,6 +146,103 @@ row_any_count =  function(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE){
 
   final
 }
+
+
+#' Row Any Match
+#'
+#' Indicates if at least one of variables (columns) is equal to a specified value across variables within each row. Returns a value of 1 if at least one variable equals the value; 0 or NA otherwise.
+#'
+#' @param ... Variables over which to check for instances equal to value (no limit on number of variables)
+#' @param value Specified value to count; can be numeric or nominal or character
+#' @param ignoreNA Indicates whether missing values should be
+#' ignored while checking the number of specified values; default is ignoreNA = TRUE. However,
+#' if all variables are missing, then a value is not returned, but is NA.
+#' If ignoreNA = TRUE, then columns with a missing value are ignored in each row as long
+#' as at least one variable is non-missing.
+#' If ignoreNA = FALSE, then a value is not returned regardless of the number of missing variables,
+#' but is NA.
+#' @param ignoreAllNA When TRUE, indicates that a value should be returned even if all
+#' variables are missing (a value of 0 will be returned in such cases). Default is FALSE. If ignoreAllNA is TRUE, then ignoreNA is assumed
+#' to be and must also be TRUE.
+#' @return Vector of length of each input variable
+#'
+#' @export
+#'
+row_any_match =  function(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE){
+
+
+
+
+  df = (data.frame(...))
+
+  nmiss = rowSums(is.na(df))
+  nvars = NCOL(df)
+
+
+  if(ignoreAllNA == FALSE){
+    if(ignoreNA == TRUE){
+
+      # Identifies vars that are factors and converts to character
+      df[sapply(df, is.factor)] <- lapply(df[sapply(df, is.factor)],
+                                          as.character)
+      df[is.na(df)] <- "Missing_Missing_Missing_Missing"
+
+      # This was my original approach. Is this reliable?
+      #df <- as.data.frame(df)
+
+      # From https://stackoverflow.com/questions/20637360/convert-all-data-frame-character-columns-to-factors
+
+      # Identifies vars that are character and converts to factor
+      df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)],
+                                             as.factor)
+
+
+      x = (rowSums(df == value))
+      x = ifelse(nmiss == nvars, NA, x)
+      x = ifelse(x >= 1, 1,
+                 ifelse(x == 0, 0, NA))
+    }
+
+    if(ignoreNA == FALSE){
+
+      x = (rowSums(df == value))
+      x = ifelse(x >= 1, 1,
+                 ifelse(x == 0, 0, NA))
+
+    }
+
+    final = x
+  }
+
+  if(ignoreAllNA == TRUE){
+
+
+    # Identifies vars that are factors and converts to character
+    df[sapply(df, is.factor)] <- lapply(df[sapply(df, is.factor)],
+                                        as.character)
+    df[is.na(df)] <- "Missing_Missing_Missing_Missing"
+
+    # Identifies vars that are character and converts to factor
+    df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)],
+                                           as.factor)
+
+
+    x = (rowSums(df == value))
+    x = ifelse(x >= 1, 1,
+               ifelse(x == 0, 0, NA))
+
+
+
+    final = x
+
+
+  }
+
+  final
+}
+
+
+
 
 
 #' Row Mean

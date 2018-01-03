@@ -7,7 +7,7 @@
 row_any_count(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
 }
 \arguments{
-\item{...}{Variables over which to count non-missing values (no limit on number of variables)}
+\item{...}{Variables over which to count instances equal to value (no limit on number of variables)}
 
 \item{value}{Specified value to count; can be numeric or nominal or character}
 
