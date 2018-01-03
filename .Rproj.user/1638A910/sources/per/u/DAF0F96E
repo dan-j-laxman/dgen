@@ -14,7 +14,8 @@
     "properties" : {
         "chunk_output_type" : "inline",
         "cursorPosition" : "19,7",
-        "scrollLine" : "3",
+        "docOutlineVisible" : "1",
+        "scrollLine" : "0",
         "tempName" : "Untitled3"
     },
     "relative_order" : 4,

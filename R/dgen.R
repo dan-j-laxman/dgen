@@ -167,7 +167,7 @@ row_any_count =  function(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE){
 #' @return Vector of length of each input variable
 #'
 #' @export
-#'
+
 row_any_match =  function(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE){
 
 
