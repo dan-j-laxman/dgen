@@ -13,31 +13,31 @@ library(dgen)
 
 * dgen, or dplyr generator, is intended to be used within the dplyr::mutate command to generate a new variable that is a combination of other variables.
 
-# dgen functions include:
+# dgen functions:
 
-* dgen::row_any_count(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
+## dgen::row_any_count(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
 
-    * For each row, returns the count of variables in the variable list (...) equal to a specified value. Includes options for handling missing data.
+  * For each row, returns the count of variables in the variable list (...) equal to a specified value. Includes options for handling missing data.
     
-* dgen::row_any_match(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
+## dgen::row_any_match(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
 
-    * Returns a 1 if at least one of variable in the variable list (...) is equal to a specified value across variables within each row. Returns a value of 1 if at least one variable equals the value; 0 or NA otherwise. Includes options for handling missing data.
+  * Returns a 1 if at least one of variable in the variable list (...) is equal to a specified value across variables within each row. Returns a value of 1 if at least one variable equals the value; 0 or NA otherwise. Includes options for handling missing data.
     
-* dgen::row_means(..., n = 0)
+## dgen::row_means(..., n = 0)
 
-    * Calculates the average across variables (columns) within each row. Includes an option for handling missing data.
+  * Calculates the average across variables (columns) within each row. Includes an option for handling missing data.
     
-* dgen::row_na(...)
+## dgen::row_na(...)
 
-    * Counts the number of missing values across variables (columns) within each row.
+  * Counts the number of missing values across variables (columns) within each row.
     
-* dgen::row_nm(...)
+## dgen::row_nm(...)
 
-    * Counts the number of non-missing values across variables (columns) within each row.
+  * Counts the number of non-missing values across variables (columns) within each row.
 
-* row_sum(..., n = 0)
+## row_sum(..., n = 0)
 
-    * Sums values across variables (columns) within each row. Includes an option for handling missing data.
+  * Sums values across variables (columns) within each row. Includes an option for handling missing data.
 
 
 ```{r}
