@@ -21,7 +21,7 @@ row_any_count =  function(..., value, maxmiss = 0){
   nmissing = rowSums(is.na(df))
   nvars = NCOL(df)
 
-  if(n < 0){
+  if(maxmiss < 0){
 
     warning = "Negative number of missing variables is not allowed."
 
@@ -30,15 +30,18 @@ row_any_count =  function(..., value, maxmiss = 0){
   }
 
 
-  if(n >= nvars){
+  if(maxmiss > nvars){
 
 
 
-    warning = "Number of missing variables allowed is equal to or exceeds number of variables."
+    warning = "Number of missing variables allowed exceeds number of variables."
 
     print(warning)
 
   }
+
+  if(maxmiss <= nvars & maxmiss >= 0){
+
 
   if(maxmiss == 0){
 
@@ -75,6 +78,7 @@ row_any_count =  function(..., value, maxmiss = 0){
       final = x
 
       final
+  }
 }
 
 
