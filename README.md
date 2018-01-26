@@ -4,7 +4,7 @@
 
 # dgen functions:
 
-## dgen::row_any_count(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
+## dgen::row_any_count(..., value, maxmiss = 0)
 
   * For each row, returns the count of variables in the variable list (...) equal to a specified value. Includes options for handling missing data.
     
