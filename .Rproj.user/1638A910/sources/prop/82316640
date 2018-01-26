@@ -1,7 +1,8 @@
 {
     "chunk_output_type" : "inline",
-    "cursorPosition" : "220,27",
+    "cursorPosition" : "150,0",
     "docOutlineVisible" : "1",
-    "scrollLine" : "219",
+    "ignored_words" : "dgen,dplyr,ignoreNA,ignoreAllNA\n",
+    "scrollLine" : "138",
     "tempName" : "Untitled1"
 }

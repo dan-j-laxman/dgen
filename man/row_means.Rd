@@ -7,7 +7,7 @@
 row_means(..., n = 0)
 }
 \arguments{
-\item{...}{Variables to be average (no limit on number of variables, but must be numeric).}
+\item{...}{Variables to be averaged (no limit on number of variables, but must be numeric).}
 
 \item{n}{Maximum number of non-missing values allowed in order to compute an average; default is 0. When n > 0, the mean for each case is calculated using the remaining variables with non-missing values.}
 }

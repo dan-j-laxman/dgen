@@ -27,5 +27,5 @@ to be and must also be TRUE.}
 Vector of length of each input variable
 }
 \description{
-Indicates if at least one of variables (columns) is equal to a specified value across variables within each row. Returns a value of 1 if at least one variable equals the value; 0 or NA otherwise.
+Indicates if at least one of variables (columns) is equal to a specified value across variables within each row. Returns a value of 1 if at least one variable equals the value; 0 or NA otherwise. Includes options for handling missing data.
 }
