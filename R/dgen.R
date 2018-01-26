@@ -1,8 +1,8 @@
 #' Row Any Count
 #'
-#' Returns the count of variables in varlist equal to a specified value. Includes options for handling missing data.
+#' Returns the count of variables in the variable list (...) equal to a specified value. Includes options for handling missing data.
 #'
-#' @param varlist Variables over which to count instances equal to value (no limit on number of variables)
+#' @param ... Variables over which to count instances equal to value (no limit on number of variables)
 #' @param value Specified value to count; can be numeric or nominal or character
 #' @param ignoreNA Indicates whether missing values should be
 #' ignored while counting the number of specified values; default is ignoreNA = TRUE. However,
@@ -18,12 +18,12 @@
 #'
 #' @export
 
-row_any_count =  function(varlist, value, ignoreNA = TRUE, ignoreAllNA = FALSE){
+row_any_count =  function(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE){
 
 
 
 
-  df = (data.frame(varlist))
+  df = (data.frame(...))
 
   nmiss = rowSums(is.na(df))
   nvars = NCOL(df)

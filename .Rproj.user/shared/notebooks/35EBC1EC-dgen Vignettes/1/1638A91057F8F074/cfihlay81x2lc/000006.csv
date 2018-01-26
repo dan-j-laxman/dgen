@@ -1,9 +1,0 @@
-"0","df1 %>% 
-  dplyr::mutate(count_lm_is_1 = dgen::row_any_count(varlist = c(""lm1"", ""lm2"", ""lm3""), 
-                                                    value = ""1"", 
-                                                    ignoreNA = TRUE)) %>% 
-  dplyr::select(lm1, lm2, lm3, count_lm_is_1)
-"
-"2","Error in mutate_impl(.data, dots) : 
-  Column `count_lm_is_1` must be length 1000 (the number of rows) or one, not 3
-"

@@ -4,10 +4,10 @@
 \alias{row_any_count}
 \title{Row Any Count}
 \usage{
-row_any_count(varlist, value, ignoreNA = TRUE, ignoreAllNA = FALSE)
+row_any_count(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
 }
 \arguments{
-\item{varlist}{Variables over which to count instances equal to value (no limit on number of variables)}
+\item{...}{Variables over which to count instances equal to value (no limit on number of variables)}
 
 \item{value}{Specified value to count; can be numeric or nominal or character}
 
@@ -27,5 +27,5 @@ to be and must also be TRUE.}
 Vector of length of each input variable
 }
 \description{
-Returns the count of variables in varlist equal to a specified value. Includes options for handling missing data.
+Returns the count of variables in the variable list (...) equal to a specified value. Includes options for handling missing data.
 }
