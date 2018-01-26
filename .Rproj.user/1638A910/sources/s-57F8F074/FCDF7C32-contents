@@ -17,11 +17,11 @@ library(dgen)
 
 * dgen::row_any_count(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
 
-    * Counts the number of variables (columns) equal to a specified value across variables within each row. Includes options for handling missing data.
+    * For each row, returns the count of variables in the variable list (...) equal to a specified value. Includes options for handling missing data.
     
 * dgen::row_any_match(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
 
-    * Indicates if at least one of variables (columns) is equal to a specified value across variables within each row. Returns a value of 1 if at least one variable equals the value; 0 or NA otherwise. Includes options for handling missing data.
+    * Returns a 1 if at least one of variable in the variable list (...) is equal to a specified value across variables within each row. Returns a value of 1 if at least one variable equals the value; 0 or NA otherwise. Includes options for handling missing data.
     
 * dgen::row_means(..., n = 0)
 
@@ -144,7 +144,7 @@ df1 %>% dplyr::mutate(count_l_is_1 = dgen::row_any_count(l1, l2, l3, value = "1"
 
 ```{r}
 df1 %>% 
-  dplyr::mutate(count_lm_is_1 = dgen::row_any_count(varlist = c("lm1", "lm2", "lm3"), 
+  dplyr::mutate(count_lm_is_1 = dgen::row_any_count(lm1, lm2, lm3, 
                                                     value = "1", 
                                                     ignoreNA = TRUE)) %>% 
   dplyr::select(lm1, lm2, lm3, count_lm_is_1)

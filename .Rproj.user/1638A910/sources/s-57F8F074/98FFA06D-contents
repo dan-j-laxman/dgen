@@ -1,36 +1,53 @@
 #' Row Any Count
 #'
-#' Returns the count of variables in the variable list (...) equal to a specified value. Includes options for handling missing data.
+#' For each row, returns the count of variables in the variable list (...) equal to a specified value.
+#' Includes options for handling missing data.
 #'
-#' @param ... Variables over which to count instances equal to value (no limit on number of variables)
-#' @param value Specified value to count; can be numeric or nominal or character
-#' @param ignoreNA Indicates whether missing values should be
-#' ignored while counting the number of specified values; default is ignoreNA = TRUE. However,
-#' if all variables are missing, then a count is not computed, but is NA.
-#' If ignoreNA = TRUE, then columns with a missing value are ignored in each row as long
-#' as at least one variable is non-missing.
-#' If ignoreNA = FALSE, then a count is not computed regardless of the number of missing variables,
-#' but is NA.
-#' @param ignoreAllNA When TRUE, indicates that a count should be computed even if all
-#' variables are missing. Default is FALSE. If ignoreAllNA is TRUE, then ignoreNA is assumed
-#' to be and must also be TRUE.
+#' @param ... Variable list over which to count instances equal to value (no limit on number of
+#' variables)
+#' @param value Specified value to count; can be numeric, nominal, or character
+#' @param maxmiss Maximum number of non-missing values allowed in order to return a count; default is 0. When n > 0, the mean for each case is calculated using the remaining variables with non-missing values.
 #' @return Vector of length of each input variable
 #'
 #' @export
 
-row_any_count =  function(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE){
+row_any_count =  function(..., value, maxmiss = 0){
 
 
 
 
   df = (data.frame(...))
 
-  nmiss = rowSums(is.na(df))
+  nmissing = rowSums(is.na(df))
   nvars = NCOL(df)
 
+  if(n < 0){
 
-  if(ignoreAllNA == FALSE){
-    if(ignoreNA == TRUE){
+    warning = "Negative number of missing variables is not allowed."
+
+    print(warning)
+
+  }
+
+
+  if(n >= nvars){
+
+
+
+    warning = "Number of missing variables allowed is equal to or exceeds number of variables."
+
+    print(warning)
+
+  }
+
+  if(maxmiss == 0){
+
+    x = (rowSums(df == value))
+
+  }
+
+
+  if(maxmiss > 0){
 
       # Identifies vars that are factors and converts to character
       df[sapply(df, is.factor)] <- lapply(df[sapply(df, is.factor)],
@@ -48,51 +65,25 @@ row_any_count =  function(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE){
 
 
       x = (rowSums(df == value))
-      x = ifelse(nmiss == nvars, NA, x)
+      x = ifelse(nmissing > maxmiss, NA, x)
+
+
+
 
     }
 
-    if(ignoreNA == FALSE){
+      final = x
 
-      x = (rowSums(df == value))
-
-    }
-
-    final = x
-  }
-
-  if(ignoreAllNA == TRUE){
-
-
-    # Identifies vars that are factors and converts to character
-    df[sapply(df, is.factor)] <- lapply(df[sapply(df, is.factor)],
-                                        as.character)
-    df[is.na(df)] <- "Missing_Missing_Missing_Missing"
-
-    # Identifies vars that are character and converts to factor
-    df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)],
-                                           as.factor)
-
-
-    x = (rowSums(df == value))
-
-
-
-    final = x
-
-
-  }
-
-  final
+      final
 }
 
 
 
 #' Row Any Match
 #'
-#' Indicates if at least one of variables (columns) is equal to a specified value across variables within each row. Returns a value of 1 if at least one variable equals the value; 0 or NA otherwise. Includes options for handling missing data.
+#' Returns a 1 if at least one of variable in the variable list (...) is equal to a specified value across variables within each row. Returns a value of 1 if at least one variable equals the value; 0 or NA otherwise. Includes options for handling missing data.
 #'
-#' @param ... Variables over which to check for instances equal to value (no limit on number of variables)
+#' @param ... List of variables over which to check for instances equal to value (no limit on number of variables)
 #' @param value Specified value to count; can be numeric or nominal or character
 #' @param ignoreNA Indicates whether missing values should be
 #' ignored while checking the number of specified values; default is ignoreNA = TRUE. However,

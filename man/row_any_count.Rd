@@ -4,28 +4,20 @@
 \alias{row_any_count}
 \title{Row Any Count}
 \usage{
-row_any_count(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
+row_any_count(..., value, maxmiss = 0)
 }
 \arguments{
-\item{...}{Variables over which to count instances equal to value (no limit on number of variables)}
+\item{...}{Variable list over which to count instances equal to value (no limit on number of
+variables)}
 
-\item{value}{Specified value to count; can be numeric or nominal or character}
+\item{value}{Specified value to count; can be numeric, nominal, or character}
 
-\item{ignoreNA}{Indicates whether missing values should be
-ignored while counting the number of specified values; default is ignoreNA = TRUE. However,
-if all variables are missing, then a count is not computed, but is NA.
-If ignoreNA = TRUE, then columns with a missing value are ignored in each row as long
-as at least one variable is non-missing.
-If ignoreNA = FALSE, then a count is not computed regardless of the number of missing variables,
-but is NA.}
-
-\item{ignoreAllNA}{When TRUE, indicates that a count should be computed even if all
-variables are missing. Default is FALSE. If ignoreAllNA is TRUE, then ignoreNA is assumed
-to be and must also be TRUE.}
+\item{maxmiss}{Maximum number of non-missing values allowed in order to return a count; default is 0. When n > 0, the mean for each case is calculated using the remaining variables with non-missing values.}
 }
 \value{
 Vector of length of each input variable
 }
 \description{
-Returns the count of variables in the variable list (...) equal to a specified value. Includes options for handling missing data.
+For each row, returns the count of variables in the variable list (...) equal to a specified value.
+Includes options for handling missing data.
 }

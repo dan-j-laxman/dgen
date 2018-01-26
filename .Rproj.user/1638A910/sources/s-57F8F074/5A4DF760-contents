@@ -1,2 +1,90 @@
 devtools::document()
 
+#' Row Any Count
+#'
+#' For each row, returns the count of variables in the variable list (...) equal to a specified value. 
+#' Includes options for handling missing data.
+#'
+#' @param ... Variable list over which to count instances equal to value (no limit on number of 
+#' variables)
+#' @param value Specified value to count; can be numeric, nominal, or character
+#' @param ignoreNA Indicates whether missing values should be ignored while counting the occurences
+#' of the specified value; default is ignoreNA = TRUE. 
+#' If ignoreNA = TRUE, then missing values are ignored and a count is returned as long as at least 
+#' one variable in the variable list has a non-missing value.
+#' If ignoreNA = FALSE, then a count is not computed if any variables in the variable list have
+#' missing values, but is NA.
+#' @param ignoreAllNA When TRUE, indicates that a count should be computed even if all
+#' variables are missing. Default is FALSE. If ignoreAllNA is TRUE, then ignoreNA is assumed
+#' to be and must also be TRUE.
+#' @return Vector of length of each input variable
+#'
+#' @export
+
+row_any_count =  function(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE){
+  
+  
+  
+  
+  df = (data.frame(...))
+  
+  nmiss = rowSums(is.na(df))
+  nvars = NCOL(df)
+  
+  
+  if(ignoreAllNA == FALSE){
+    if(ignoreNA == TRUE){
+      
+      # Identifies vars that are factors and converts to character
+      df[sapply(df, is.factor)] <- lapply(df[sapply(df, is.factor)],
+                                          as.character)
+      df[is.na(df)] <- "Missing_Missing_Missing_Missing"
+      
+      # This was my original approach. Is this reliable?
+      #df <- as.data.frame(df)
+      
+      # From https://stackoverflow.com/questions/20637360/convert-all-data-frame-character-columns-to-factors
+      
+      # Identifies vars that are character and converts to factor
+      df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)],
+                                             as.factor)
+      
+      
+      x = (rowSums(df == value))
+      x = ifelse(nmiss == nvars, NA, x)
+      
+    }
+    
+    if(ignoreNA == FALSE){
+      
+      x = (rowSums(df == value))
+      
+    }
+    
+    final = x
+  }
+  
+  if(ignoreAllNA == TRUE){
+    
+    
+    # Identifies vars that are factors and converts to character
+    df[sapply(df, is.factor)] <- lapply(df[sapply(df, is.factor)],
+                                        as.character)
+    df[is.na(df)] <- "Missing_Missing_Missing_Missing"
+    
+    # Identifies vars that are character and converts to factor
+    df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)],
+                                           as.factor)
+    
+    
+    x = (rowSums(df == value))
+    
+    
+    
+    final = x
+    
+    
+  }
+  
+  final
+}

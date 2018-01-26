@@ -7,7 +7,7 @@
 row_any_match(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
 }
 \arguments{
-\item{...}{Variables over which to check for instances equal to value (no limit on number of variables)}
+\item{...}{List of variables over which to check for instances equal to value (no limit on number of variables)}
 
 \item{value}{Specified value to count; can be numeric or nominal or character}
 
@@ -27,5 +27,5 @@ to be and must also be TRUE.}
 Vector of length of each input variable
 }
 \description{
-Indicates if at least one of variables (columns) is equal to a specified value across variables within each row. Returns a value of 1 if at least one variable equals the value; 0 or NA otherwise. Includes options for handling missing data.
+Returns a 1 if at least one of variable in the variable list (...) is equal to a specified value across variables within each row. Returns a value of 1 if at least one variable equals the value; 0 or NA otherwise. Includes options for handling missing data.
 }

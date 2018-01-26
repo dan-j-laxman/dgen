@@ -8,15 +8,15 @@
     "hash" : "0",
     "id" : "FCDF7C32",
     "lastKnownWriteTime" : 1515012217,
-    "last_content_update" : 1516941297151,
+    "last_content_update" : 1516942152678,
     "path" : "C:/Users/dlaxman2/Desktop/Box Sync/Dan VI/Analyses_in_R/dgen/dgen Vignettes.Rmd",
     "project_path" : "dgen Vignettes.Rmd",
     "properties" : {
         "chunk_output_type" : "inline",
-        "cursorPosition" : "146,52",
+        "cursorPosition" : "19,106",
         "docOutlineVisible" : "1",
         "ignored_words" : "dgen,dplyr,ignoreNA,ignoreAllNA\n",
-        "scrollLine" : "138",
+        "scrollLine" : "7",
         "tempName" : "Untitled1"
     },
     "relative_order" : 3,
