@@ -12,7 +12,7 @@
 
   * Returns a 1 if at least one of variable in the variable list (...) is equal to a specified value across variables within each row. Returns a value of 1 if at least one variable equals the value; 0 or NA otherwise. Includes options for handling missing data.
     
-## dgen::row_means(..., n = 0)
+## dgen::row_mean(..., n = 0)
 
   * Calculates the average across variables (columns) within each row. Includes an option for handling missing data.
     
@@ -24,7 +24,7 @@
 
   * Counts the number of non-missing values across variables (columns) within each row.
 
-## row_sum(..., n = 0)
+## dgen::row_sum(..., n = 0)
 
   * Sums values across variables (columns) within each row. Includes an option for handling missing data.
 

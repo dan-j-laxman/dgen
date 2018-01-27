@@ -11,73 +11,55 @@
 #'
 #' @export
 
-row_any_count =  function(..., value, maxmiss = 0){
+row_any_count =  function(..., value, maxmiss_n = 0){
 
-
-
-
+  # Variables are combined into a dataframe
   df = (data.frame(...))
-
+  # Number of missing in each row is calculated.
   nmissing = rowSums(is.na(df))
+  # Number of variables is calculated.
   nvars = NCOL(df)
 
-  if(maxmiss < 0){
+  # Check that maxmiss is an integer
+  # (Check will fail if deviation from integer is less than 1e15)
+  intcheck = maxmiss_n%%1 == 0
 
-    warning = "Negative number of missing variables is not allowed."
-
-    print(warning)
-
+  if(intcheck == FALSE){
+    stop("Number of maximum missing values must be an integer")
   }
 
+  else{
 
-  if(maxmiss > nvars){
-
-
-
-    warning = "Number of missing variables allowed exceeds number of variables."
-
-    print(warning)
-
-  }
-
-  if(maxmiss <= nvars & maxmiss >= 0){
-
-
-  if(maxmiss == 0){
-
-    x = (rowSums(df == value))
-
-  }
-
-
-  if(maxmiss > 0){
-
-      # Identifies vars that are factors and converts to character
-      df[sapply(df, is.factor)] <- lapply(df[sapply(df, is.factor)],
-                                          as.character)
-      df[is.na(df)] <- "Missing_Missing_Missing_Missing"
-
-      # This was my original approach. Is this reliable?
-      #df <- as.data.frame(df)
-
-      # From https://stackoverflow.com/questions/20637360/convert-all-data-frame-character-columns-to-factors
-
-      # Identifies vars that are character and converts to factor
-      df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)],
-                                             as.factor)
-
-
-      x = (rowSums(df == value))
-      x = ifelse(nmissing > maxmiss, NA, x)
-
-
-
-
+    # Check for negative number of maximum missing values
+    if(maxmiss_n < 0){
+      stop("Negative number of maximum missing values is not allowed")
     }
 
-      final = x
+    # Check for excess number of maximum missing values greater than number
+    # of variables.
+    if(maxmiss_n > nvars){
+      stop("Number of maximum missing values exceeds number of variables")
+    }
 
+    # If maxmiss_n is 0 or a positive integer and maxmiss_n does not exceed
+    # the number of variables, then proceeds.
+    if(maxmiss_n <= nvars & maxmiss_n >= 0){
+
+      # maxmiss_n is 0.
+      if(maxmiss_n == 0){
+        x = (rowSums(df == value, na.rm = FALSE))
+      }
+
+      # maxmiss_n > 0.
+      if(maxmiss_n > 0){
+        x = (rowSums(df == value, na.rm = TRUE))
+        x = ifelse(nmissing > maxmiss_n, NA, x)
+      }
+
+      final = x
       final
+
+    }
   }
 }
 

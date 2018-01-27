@@ -1,0 +1,166 @@
+---
+title: "tableF_compare"
+output: html_notebook
+---
+
+
+
+
+
+```{r}
+## tablef_compare1 Function
+
+```{r, echo=FALSE, results=FALSE, warning=FALSE, message=FALSE}
+
+tableF_compare = function(data_raw, x1, data_clean, x2, n = 20){
+  
+x1 = eval(substitute(x1),data_raw)
+## Keeps track of the variable
+.call = match.call()
+
+## Error catch for all missing
+if(all(is.na(x1))){
+  warn1 = "All values for " 
+  warn2 = .call[3]
+  warn3 = " are missing."
+  warn = rbind(warn1, warn2, warn3)
+  warning(warn)
+  return("NA")
+}
+
+## Summary statistics
+Freq     = table(x1, useNA="ifany")
+CumFreq  = round(cumsum(table(x1, useNA="ifany")))
+Percent  = suppressWarnings(formatC(100*(prop.table(table(x1, useNA="ifany"))), 
+                                    format = "f", digits = 2, big.mark = ","))
+CumPerc  = suppressWarnings(formatC(100*cumsum(prop.table(table(x1, useNA="ifany"))), 
+                                    format = "f", digits = 2, big.mark = ","))
+Valid    = suppressWarnings(formatC(100*(prop.table(table(x1, useNA="no"))), 
+                                    format = "f", digits = 2, big.mark = ","))
+CumValid = suppressWarnings(formatC(100*cumsum(prop.table(table(x1, useNA="no"))), 
+                                    format = "f", digits = 2, big.mark = ","))
+
+## If there is missing, add a blank line below the valids
+if (any(is.na(x1))){
+  VarName  = data.frame(row.names = paste0((.call)[3]," (raw)"), "", "", "", "", "", "")
+  names(Freq)[length(names(Freq))] = "Missing"
+  names(CumFreq)[length(names(CumFreq))] = "Missing"
+  final_raw = data.frame("Freq"    = as.character(Freq), 
+                     "CumFreq" = as.character(CumFreq),  
+                     "Percent" = paste0(Percent, "%"), 
+                     "CumPerc" = paste0(CumPerc, "%"),
+                     "Valid"   = c(paste0(Valid, "%"), ""),
+                     "CumValid" = c(paste0(CumValid, "%"), ""),
+#                     row.names = paste0(names(Freq), " (raw)"))
+                     row.names = names(Freq))
+  names(VarName)=names(final_raw)
+  final_raw = rbind(VarName, final_raw)
+  final_raw[]=lapply(final_raw,as.character)
+  if (dim(final_raw)[1] > n){
+    final_raw1 = final_raw[c(1:(n/2)),]
+    final_raw2 = final_raw[c((dim(final_raw)[1] - n/2):(dim(final_raw)[1])),]
+    final_raw1 = rbind(final_raw1, "...")
+    final_raw = rbind(final_raw1, final_raw2)
+    row.names(final_raw) =  ifelse(final_raw$Freq=="...", "...", row.names(final_raw))
+  }
+} else {
+  VarName  = data.frame(row.names = paste0((.call)[3]," (raw)"), "", "", "", "")
+  final_raw = data.frame("Freq"    = as.character(Freq), 
+                     "CumFreq" = as.character(CumFreq), 
+                     "Percent" = paste0(Percent, "%"), 
+                     "CumPerc" = paste0(CumPerc, "%"),
+#                     row.names = paste0(names(Freq), " (raw)"))
+                     row.names = names(Freq))
+  names(VarName)=names(final_raw)
+  final_raw = rbind(VarName, final_raw)
+  final_raw[]=lapply(final_raw,as.character)
+  if (dim(final_raw)[1] > n){
+    final_raw1 = final_raw[c(1:(n/2)),]
+    final_raw2 = final_raw[c((dim(final_raw)[1] - n/2):(dim(final_raw)[1])),]
+    final_raw1 = rbind(final_raw1, "...")
+    final_raw = rbind(final_raw1, final_raw2)
+    row.names(final_raw) =  ifelse(final_raw$Freq=="...", "...", row.names(final_raw))
+  }}
+
+## Output
+invisible(final_raw)
+
+
+x2 = eval(substitute(x2),data_clean)
+## Keeps track of the variable
+.call = match.call()
+
+## Error catch for all missing
+if(all(is.na(x2))){
+  warn1 = "All values for " 
+  warn2 = .call[5]
+  warn3 = " are missing."
+  warn = rbind(warn1, warn2, warn3)
+  warning(warn)
+  return("NA")
+}
+
+## Summary statistics
+Freq     = table(x2, useNA="ifany")
+CumFreq  = round(cumsum(table(x2, useNA="ifany")))
+Percent  = suppressWarnings(formatC(100*(prop.table(table(x2, useNA="ifany"))), 
+                                    format = "f", digits = 2, big.mark = ","))
+CumPerc  = suppressWarnings(formatC(100*cumsum(prop.table(table(x2, useNA="ifany"))), 
+                                    format = "f", digits = 2, big.mark = ","))
+Valid    = suppressWarnings(formatC(100*(prop.table(table(x2, useNA="no"))), 
+                                    format = "f", digits = 2, big.mark = ","))
+CumValid = suppressWarnings(formatC(100*cumsum(prop.table(table(x2, useNA="no"))), 
+                                    format = "f", digits = 2, big.mark = ","))
+
+## If there is missing, add a blank line below the valids
+if (any(is.na(x2))){
+  VarName  = data.frame(row.names = paste0((.call)[5]," (clean)"), "", "", "", "", "", "")
+  names(Freq)[length(names(Freq))] = "Missing"
+  names(CumFreq)[length(names(CumFreq))] = "Missing"
+  final_clean = data.frame("Freq"    = as.character(Freq), 
+                     "CumFreq" = as.character(CumFreq),  
+                     "Percent" = paste0(Percent, "%"), 
+                     "CumPerc" = paste0(CumPerc, "%"),
+                     "Valid"   = c(paste0(Valid, "%"), ""),
+                     "CumValid" = c(paste0(CumValid, "%"), ""),
+#                     row.names = paste0(names(Freq), " (clean)"))
+                     row.names = names(Freq))
+  names(VarName)=names(final_clean)
+  final_clean = rbind(VarName, final_clean)
+  final_clean[]=lapply(final_clean,as.character)
+  if (dim(final_clean)[1] > n){
+    final_clean1 = final_clean[c(1:(n/2)),]
+    final_clean2 = final_clean[c((dim(final_clean)[1] - n/2):(dim(final_clean)[1])),]
+    final_clean1 = rbind(final_clean1, "...")
+    final_clean = rbind(final_clean1, final_clean2)
+    row.names(final_clean) =  ifelse(final_clean$Freq=="...", "...", row.names(final_clean))
+  }
+} else {
+  VarName  = data.frame(row.names = paste0((.call)[5]," (clean)"), "", "", "", "")
+  final_clean = data.frame("Freq"    = as.character(Freq), 
+                     "CumFreq" = as.character(CumFreq), 
+                     "Percent" = paste0(Percent, "%"), 
+                     "CumPerc" = paste0(CumPerc, "%"),
+#                     row.names = paste0(names(Freq), " (clean)"))
+                     row.names = names(Freq))
+  names(VarName)=names(final_clean)
+  final_clean = rbind(VarName, final_clean)
+  final_clean[]=lapply(final_clean,as.character)
+  if (dim(final_clean)[1] > n){
+    final_clean1 = final_clean[c(1:(n/2)),]
+    final_clean2 = final_clean[c((dim(final_clean)[1] - n/2):(dim(final_clean)[1])),]
+    final_clean1 = rbind(final_clean1, "...")
+    final_clean = rbind(final_clean1, final_clean2)
+    row.names(final_clean) =  ifelse(final_clean$Freq=="...", "...", row.names(final_clean))
+  }
+  }
+
+## Output
+
+print(final_raw)
+print(final_clean) 
+
+}
+```
+```
+

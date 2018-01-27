@@ -4,7 +4,7 @@
 \alias{row_any_count}
 \title{Row Any Count}
 \usage{
-row_any_count(..., value, maxmiss = 0)
+row_any_count(..., value, maxmiss_n = 0)
 }
 \arguments{
 \item{...}{Variable list over which to count instances equal to value (no limit on number of
