@@ -4,20 +4,23 @@
 \alias{row_any_count}
 \title{Row Any Count}
 \usage{
-row_any_count(..., value, maxmiss_n = 0)
+row_any_count(..., values, maxmiss_n = 0)
 }
 \arguments{
 \item{...}{Variable list over which to count instances equal to value (no limit on number of
 variables)}
 
-\item{value}{Specified value to count; can be numeric, nominal, or character}
+\item{values}{Specified value or values to count; can be numeric, nominal, or character}
 
-\item{maxmiss}{Maximum number of non-missing values allowed in order to return a count; default is 0. When n > 0, the mean for each case is calculated using the remaining variables with non-missing values.}
+\item{maxmiss_n}{Maximum number of missing values allowed in the variables list in
+order to return a count; default is 0. For each row, if # of missing values <= maxmiss_n,
+then the count is calculated using the remaining variables with non-missing values; if # of
+missing values > maxmiss_n, then NA is returned.}
 }
 \value{
 Vector of length of each input variable
 }
 \description{
-For each row, returns the count of variables in the variable list (...) equal to a specified value.
-Includes options for handling missing data.
+For each row, returns the count of variables in the variable list (...) equal to a
+specified value or values. Includes options for handling missing data.
 }

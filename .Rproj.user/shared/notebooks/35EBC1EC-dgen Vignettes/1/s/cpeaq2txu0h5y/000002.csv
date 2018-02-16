@@ -1,2 +1,0 @@
-"0","df1 %>% dplyr::mutate(anymatch_ch_is_rock = dgen::row_any_match(ch1, ch2, ch3, value = ""rock"")) %>% "
-"0","  dplyr::select(ch1, ch2, ch3, anymatch_ch_is_rock)"

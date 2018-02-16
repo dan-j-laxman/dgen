@@ -4,16 +4,20 @@
 \alias{row_sum}
 \title{Row Sum}
 \usage{
-row_sum(..., n = 0)
+row_sum(..., maxmiss_n = 0)
 }
 \arguments{
 \item{...}{Variables to be summed (no limit on number of variables, but must be numeric).}
 
-\item{n}{Maximum number of non-missing values allowed in order to compute a sum; default is 0. Missing values are treated as 0.}
+\item{maxmiss_n}{Maximum number of missing values allowed in the variables list in
+order to return a sum; default is 0. For each row, if # of missing values <= maxmiss_n,
+then the sum is calculated using the remaining variables with non-missing values; if # of
+missing values > maxmiss_n, then NA is returned. maxmiss_n must be less than the number of
+variables.}
 }
 \value{
 Vector of length of each input variable.
 }
 \description{
-Sums values across variables (columns) within each row. Includes an option for handling missing data.
+Calculates sum across variables within each row. Includes an option for handling missing data.
 }

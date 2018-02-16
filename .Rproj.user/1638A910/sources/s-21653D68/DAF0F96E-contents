@@ -1,0 +1,196 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+set.seed(100)
+df <- data.frame(ID = 1:20)
+df[paste0("IM", 1:7)] <- replicate(7,sample(c(rep(NA,5),1,3, 4, 2),20, replace = TRUE))
+
+testdf2 <- c("1", "3")
+
+col <- paste0("IM", 1:7)
+df$new_col <- ((rowSums(df[, col] %in% testdf2, na.rm=T)))
+
+df
+```
+
+
+```{r}
+White_patterns = c("Sicillian", "sicillian", "Caucasian", "Celtic", "European",
+                   "German", "Spanish", "iranian", "Iranian", "Middle eastern",
+                   "Palistine", "Bosnian", "Albanian")
+
+
+  dplyr::mutate(White_in_race_spec = grepl(paste(White_patterns, collapse = "|"), 
+                                                  `ACS-Race 6 spec`))  
+
+
+grepl()
+
+
+length(ex1 <- expression(1 + 0:9)) # 1
+ex1
+eval(ex1) # 1:10
+
+
+A <- 10.513
+call("round", A)        # round(10.5)
+call("round", quote(A)) # round(A)
+
+f <- "round"
+dig = ", digits = 2"
+call(f, quote(A), quote(dig))       # round(A)
+## if we want to supply a function we need to use as.call or similar
+f <- round
+## Not run: call(f, quote(A))  # error: first arg must be character
+(g <- as.call(list(f, quote(A))))
+eval(g)
+
+```
+
+
+
+
+
+```{r}
+lm1 <- sample(c(1,2,3,4,5,6,7, NA), 1000, replace = TRUE)
+lm2 <- sample(c(1,2,3,4,5,6,7, NA), 1000, replace = TRUE)
+lm3 <- sample(c(1,2,3,4,5,6,7, NA), 1000, replace = TRUE)
+
+
+df3 <- data.frame(lm1, lm2,lm3)
+
+
+df3 %>% 
+  mutate(newvar = eval(call(f, quote(lm1), digits = 2))  )
+
+
+      r = "rowSums"
+      r2 = rowSums
+      values = c(1,3,5)
+      rowsumspaste2=noquote(paste("df3 == ",
+                                                        values,
+                                                        collapse = " | "))
+
+
+df3 %>% 
+  mutate(newvar = eval(as.call(list(r2, as.symbol(rowsumspaste2)))))
+
+df3 %>% 
+  mutate(newvar = rowSums(df3 ==  1 | df3 ==  3 | df3 ==  5))
+
+quote(tesety)
+
+
+
+lapply(values,
+       FUN = rowSums())
+
+
+
+
+
+summary <- function(x) {
+  funs <- c(mean, median, sd, mad, IQR)
+  lapply(funs, function(f) f(x, na.rm = TRUE))
+}
+
+
+summary(df3$lm1)
+
+
+lapply(mtcars, function(x) length(unique(x)))
+```
+
+
+```{r}
+      df.count <- data.frame()
+
+      for (i in values ){
+        df.count$i = rowSums(df3 == i, na.rm = TRUE)
+      }
+```
+
+```{r}
+      datalist <- list()
+
+      for (i in values ){
+      count = 
+                   rowSums(df3 == i, na.rm = TRUE)
+      # datalist[[i]] <- count
+      }
+      df.count <- dplyr::bind_cols(datalist)
+
+      final = addmargins(df.count, )
+
+```
+
+
+
+```{r}
+j <- function(x) {
+  y <- 2
+  function() {
+    c(x, y)
+  }
+}
+k <- j(1)
+k()
+rm(j, k)
+```
+
+
+```{r}
+foo <- function(x)
+{
+    line1 <- x
+    line2 <- 0
+    line3 <- line1 + line2
+    return(line3)
+}
+
+newline = "line1 - line2"
+
+body(foo)[[4]] <- as.symbol(newline)
+
+
+foo
+function (x) 
+{
+    line1 <- x
+    line2 <- 2
+    line3 <- line1 + line2
+    return(line3)
+}
+
+foo(x=3)
+```
+
+
+
+<!-- asdf -->
+
+```{r}
+df %>% 
+  dplyr::mutate(lm1 = replace(lm1, lm1 < 2 | lm1 > 3 , NA))
+
+df %>% 
+  dplyr::mutate(lm1_r = ifelse(lm1 < 2, NA,
+                               ifelse(lm1 > 2 & lm1 < 5, lm1, NA)))
+
+%>% 
+  
+
+df %>%
+  dplyr::mutate(lm1_r = dplyr::case_when(lm1 == 1 ~ 1,
+                                         lm1 == 2 ~ 2,
+                                         lm1 == 3 ~ 3,                                                                         lm1 == 4 ~ 4,
+                                         lm1 == 5 ~ 5,                                                                         lm1 == 6 ~ 6,
+                                         lm1 == 7 ~ 6))
+
+```
+
+

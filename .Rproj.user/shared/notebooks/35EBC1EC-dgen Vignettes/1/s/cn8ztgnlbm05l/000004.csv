@@ -1,0 +1,4 @@
+"0","df1 %>% "
+"0","  dplyr::mutate(mean_lm = dgen::row_mean(lm1, lm2, lm3,"
+"0","                                         maxmiss_n = 0)) %>% "
+"0","  dplyr::select(lm1, lm2, lm3, mean_lm)"

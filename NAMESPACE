@@ -2,7 +2,9 @@
 
 export(row_any_count)
 export(row_any_match)
-export(row_means)
-export(row_na)
-export(row_nm)
+export(row_greater_count)
+export(row_less_count)
+export(row_mean)
+export(row_nmiss)
+export(row_nvalid)
 export(row_sum)

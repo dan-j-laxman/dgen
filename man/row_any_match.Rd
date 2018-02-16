@@ -4,28 +4,26 @@
 \alias{row_any_match}
 \title{Row Any Match}
 \usage{
-row_any_match(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
+row_any_match(..., values, maxmiss_n = 0)
 }
 \arguments{
-\item{...}{List of variables over which to check for instances equal to value (no limit on number of variables)}
+\item{...}{List of variables over which to check for a match (no limit
+on number of variables)}
 
-\item{value}{Specified value to count; can be numeric or nominal or character}
+\item{values}{Specified value or values to count; can be numeric, nominal, or character}
 
-\item{ignoreNA}{Indicates whether missing values should be
-ignored while checking the number of specified values; default is ignoreNA = TRUE. However,
-if all variables are missing, then a value is not returned, but is NA.
-If ignoreNA = TRUE, then columns with a missing value are ignored in each row as long
-as at least one variable is non-missing.
-If ignoreNA = FALSE, then a value is not returned regardless of the number of missing variables,
-but is NA.}
-
-\item{ignoreAllNA}{When TRUE, indicates that a value should be returned even if all
-variables are missing (a value of 0 will be returned in such cases). Default is FALSE. If ignoreAllNA is TRUE, then ignoreNA is assumed
-to be and must also be TRUE.}
+\item{maxmiss_n}{Maximum number of missing values allowed in the variables list in
+order to return a value; default is 0. For each row, if # of missing values <= maxmiss_n,
+then whether (1) or not (0) there is a match is returned using the remaining variables with
+non-missing values; if # of missing values > maxmiss_n, then NA is returned.}
 }
 \value{
 Vector of length of each input variable
+
+Vector of length of each input variable
 }
 \description{
-Returns a 1 if at least one of variable in the variable list (...) is equal to a specified value across variables within each row. Returns a value of 1 if at least one variable equals the value; 0 or NA otherwise. Includes options for handling missing data.
+Checks whether the value of any variable in a variable list matches a specified value.
+Returns a value of 1 if at least one variable in the variable list (...) is equal to a
+specified value; 0 or NA otherwise. Includes options for handling missing data.
 }

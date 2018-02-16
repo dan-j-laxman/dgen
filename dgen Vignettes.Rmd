@@ -41,9 +41,7 @@ library(dgen)
   * Sums values across variables (columns) within each row. Includes an option for handling missing data.
 
 
-```{r}
-dgen::
-```
+
 
 
 # Testing of dgen
@@ -228,11 +226,12 @@ df1 %>%
 #### Likert scale variables with *no* missing data
 
 ```{r}
-df1 %>% 
+df1 %>%
   dplyr::mutate(count_l_is_1 = dgen::row_any_count(l1, l2, l3, 
                                                    value = "1")) %>% 
   dplyr::select(l1, l2, l3, count_l_is_1)
 ```
+
 
 #### Likert scale variables with *non-ignored* missing data 
 
@@ -271,32 +270,6 @@ df1 %>%
                                                     maxmiss_n = 3)) %>% 
   dplyr::select(lm1, lm2, lm3, count_lm_is_1) 
 ```
-
-* maxmiss cannot be negative or exceed number of variables
-```{r}
-df1 %>% 
-  dplyr::mutate(count_lm_is_1 = dgen::row_any_count(lm1, lm2, lm3, 
-                                                    value = "1", 
-                                                    maxmiss = -1)) %>% 
-  dplyr::select(lm1, lm2, lm3, count_lm_is_1) 
-```
-
-```{r}
-df1 %>% 
-  dplyr::mutate(count_lm_is_1 = dgen::row_any_count(lm1, lm2, lm3, 
-                                                    value = "1", 
-                                                    maxmiss = 4)) %>% 
-  dplyr::select(lm1, lm2, lm3, count_lm_is_1) 
-```
-
-#### Likert scale variables with *non-ignored* missing data
-
-
-```{r}
-df1 %>% dplyr::mutate(count_lm_is_1 = dgen::row_any_count(lm1, lm2, lm3, value = "1", ignoreNA = FALSE)) %>% 
-  dplyr::select(lm1, lm2, lm3, count_lm_is_1)
-```
-
 
 ### Nominal Variables
 
@@ -385,6 +358,214 @@ df1 %>%
   dplyr::select(chm1, chm2, chm3, count_chm_is_rock)
 ```
 
+## `row_greater_count` Testing and Examples
+
+### Likert Scale Variables
+
+#### Error catching
+
+##### Number of maximum missing values must be an integer. 
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_l_is_gt_3 = dgen::row_greater_count(l1, l2, l3, 
+                                                   value = 3,
+                                                   maxmiss_n = 1.3))
+```
+
+##### Negative number of maximum missing values is not allowed. 
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_l_is_gt_3 = dgen::row_greater_count(l1, 
+                                                       l2, 
+                                                       l3, 
+                                                       value = 3,
+                                                       maxmiss_n = -2))
+```
+
+##### Number of maximum missing values exceeds number of variables. 
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_l_is_gt_3 = dgen::row_greater_count(l1, l2, l3,
+                                                       value = 3,
+                                                       maxmiss_n = 4))
+```
+
+##### Value must be numeric
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_l_is_gt_3 = dgen::row_greater_count(l1, l2, l3,
+                                                       value = "3",
+                                                       maxmiss_n = 2))
+```
+
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_l_is_gt_3 = dgen::row_greater_count(l1, l2, l3,
+                                                       value = "dog",
+                                                       maxmiss_n = 2))
+```
+
+#### Likert scale variables with *no* missing data
+
+```{r}
+df1 %>%
+  dplyr::mutate(count_l_is_gt_3 = dgen::row_greater_count(l1, l2, l3,
+                                                       value = 3)) %>% 
+  dplyr::select(l1, l2, l3, count_l_is_gt_3)
+```
+
+
+#### Likert scale variables with *non-ignored* missing data 
+
+* maxmiss_n is set to 0. If a case has **no** non-missing values, then a count is returned; otherwise, NA. This is the default.
+
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_lm_is_gt_3 = dgen::row_greater_count(lm1, lm2, lm3, 
+                                                    value = 3, 
+                                                    maxmiss_n = 0)) %>% 
+  dplyr::select(lm1, lm2, lm3, count_lm_is_gt_3) 
+```
+
+#### Likert scale variables with *ignored* missing data (unless missing on all variables)
+
+*  There are 3 variables, so maxmiss_n it set to 2. As long as a case has a non-missing value on at least 3 - 2 = 1 variables, then a count is returned.
+
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_lm_is_gt_3 = dgen::row_greater_count(lm1, lm2, lm3, 
+                                                    value = 3, 
+                                                    maxmiss_n = 2)) %>% 
+  dplyr::select(lm1, lm2, lm3, count_lm_is_gt_3) 
+```
+
+#### Likert scale variables with *ignored* missing data (even if missing on all variables)
+
+*  There are 3 variables, so maxmiss_n is set to 3. If a case is missing on all 3 variables, a count is still computed.
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_lm_is_gt_3 = dgen::row_greater_count(lm1, lm2, lm3, 
+                                                    value = 3, 
+                                                    maxmiss_n = 3)) %>% 
+  dplyr::select(lm1, lm2, lm3, count_lm_is_gt_3) 
+```
+
+
+
+
+## `row_less_count` Testing and Examples
+
+### Likert Scale Variables
+
+#### Error catching
+
+##### Number of maximum missing values must be an integer. 
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_l_is_lt_5 = dgen::row_less_count(l1, l2, l3, 
+                                                   value = 5,
+                                                   maxmiss_n = 1.3))
+```
+
+##### Negative number of maximum missing values is not allowed. 
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_l_is_lt_5 = dgen::row_less_count(l1, 
+                                                       l2, 
+                                                       l3, 
+                                                       value = 5,
+                                                       maxmiss_n = -2))
+```
+
+##### Number of maximum missing values exceeds number of variables. 
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_l_is_lt_5 = dgen::row_less_count(l1, l2, l3,
+                                                       value = 5,
+                                                       maxmiss_n = 4))
+```
+
+##### Value must be numeric
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_l_is_lt_5 = dgen::row_less_count(l1, l2, l3,
+                                                       value = "5",
+                                                       maxmiss_n = 2))
+```
+
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_l_is_lt_5 = dgen::row_less_count(l1, l2, l3,
+                                                       value = "dog",
+                                                       maxmiss_n = 2))
+```
+
+#### Likert scale variables with *no* missing data
+
+```{r}
+df1 %>%
+  dplyr::mutate(count_l_is_lt_5 = dgen::row_less_count(l1, l2, l3,
+                                                       value = 5)) %>% 
+  dplyr::select(l1, l2, l3, count_l_is_lt_5)
+```
+
+
+#### Likert scale variables with *non-ignored* missing data 
+
+* maxmiss_n is set to 0. If a case has **no** non-missing values, then a count is returned; otherwise, NA. This is the default.
+
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_lm_is_lt_5 = dgen::row_less_count(lm1, lm2, lm3, 
+                                                    value = 5, 
+                                                    maxmiss_n = 0)) %>% 
+  dplyr::select(lm1, lm2, lm3, count_lm_is_lt_5) 
+```
+
+#### Likert scale variables with *ignored* missing data (unless missing on all variables)
+
+*  There are 3 variables, so maxmiss_n it set to 2. As long as a case has a non-missing value on at least 3 - 2 = 1 variables, then a count is returned.
+
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_lm_is_lt_5 = dgen::row_less_count(lm1, lm2, lm3, 
+                                                    value = 5, 
+                                                    maxmiss_n = 2)) %>% 
+  dplyr::select(lm1, lm2, lm3, count_lm_is_lt_5) 
+```
+
+#### Likert scale variables with *ignored* missing data (even if missing on all variables)
+
+*  There are 3 variables, so maxmiss_n is set to 3. If a case is missing on all 3 variables, a count is still computed.
+
+```{r}
+df1 %>% 
+  dplyr::mutate(count_lm_is_lt_5 = dgen::row_less_count(lm1, lm2, lm3, 
+                                                    value = 5, 
+                                                    maxmiss_n = 3)) %>% 
+  dplyr::select(lm1, lm2, lm3, count_lm_is_lt_5) 
+```
+
+
+
+
+
+
 ## `row_any_match` Examples
 
 ### Character Variables
@@ -392,8 +573,15 @@ df1 %>%
 #### Character Variable with *no* missing data
 
 ```{r}
-df1 %>% dplyr::mutate(anymatch_ch_is_rock = dgen::row_any_match(ch1, ch2, ch3, value = "rock")) %>% 
-  dplyr::select(ch1, ch2, ch3, anymatch_ch_is_rock)
+df1 %>% 
+  dplyr::mutate(anymatch_ch_is_rock = dgen::row_any_match(ch1, 
+                                                          ch2, 
+                                                          ch3, 
+                                                          value = "rock")) %>% 
+  dplyr::select(ch1, 
+                ch2, 
+                ch3, 
+                anymatch_ch_is_rock)
 ```
 
 #### Character Variable with *ignored* missing data (unless missing on all variables)
@@ -402,11 +590,15 @@ df1 %>% dplyr::mutate(anymatch_ch_is_rock = dgen::row_any_match(ch1, ch2, ch3, v
 
 ```{r}
 df1 %>% 
-  dplyr::mutate(anymatch_ch_is_rock = 
-                  dgen::row_any_match(chm1, chm2, chm3, 
-                                      value = "rock", 
-                                      ignoreNA = TRUE)) %>% 
-  dplyr::select(chm1, chm2, chm3, anymatch_ch_is_rock)
+  dplyr::mutate(anymatch_ch_is_rock = dgen::row_any_match(chm1,
+                                                          chm2, 
+                                                          chm3, 
+                                                          value = "rock", 
+                                                          maxmiss_n = 2)) %>% 
+  dplyr::select(chm1, 
+                chm2, 
+                chm3, 
+                anymatch_ch_is_rock)
 ```
 
 #### Character Variable with *ignored* missing data (even if missing on all variables)
@@ -417,11 +609,15 @@ to be `TRUE` if `ignoreAllNA` is `TRUE`.
 
 ```{r}
 df1 %>% 
-  dplyr::mutate(anymatch_ch_is_rock = 
-                  dgen::row_any_match(chm1, chm2, chm3, 
-                                      value = "rock", 
-                                      ignoreAllNA = TRUE)) %>% 
-  dplyr::select(chm1, chm2, chm3, anymatch_ch_is_rock)
+  dplyr::mutate(anymatch_ch_is_rock = dgen::row_any_match(chm1,
+                                                          chm2, 
+                                                          chm3, 
+                                                          value = "rock", 
+                                                          maxmiss_n = 3)) %>% 
+  dplyr::select(chm1, 
+                chm2, 
+                chm3, 
+                anymatch_ch_is_rock)
 ```
 
 #### Character Variable with *non-ignored* missing data 
@@ -497,11 +693,79 @@ df1 %>%
 
 
 
-## Testing of row_means
+## Testing of row_mean
+
+
+### Likert Scale Variables
+
+#### Error catching
+
+##### Number of maximum missing values must be an integer. 
 
 ```{r}
 df1 %>% 
-  dplyr::select(lm1, lm2, lm3) %>% 
-  dplyr::mutate(lm_mean = dgen::row_means(lm1, lm2, lm3, n = 1))
+  dplyr::mutate(mean_l = dgen::row_mean(l1, l2, l3,
+                                        maxmiss_n = 1.3))
 ```
+
+##### Negative number of maximum missing values is not allowed. 
+
+```{r}
+df1 %>% 
+  dplyr::mutate(mean_l = dgen::row_mean(l1, l2, l3,
+                                        maxmiss_n = -2))
+```
+
+##### Number of maximum missing values exceeds number of variables. 
+
+```{r}
+df1 %>% 
+  dplyr::mutate(mean_l = dgen::row_mean(l1, l2, l3,
+                                        maxmiss_n = 4))
+```
+
+##### Number of maximum missing values equals number of variables. 
+
+```{r}
+df1 %>% 
+  dplyr::mutate(mean_l = dgen::row_mean(l1, l2, l3,
+                                        maxmiss_n = 3))
+```
+
+#### Likert scale variables with *no* missing data
+
+```{r}
+df1 %>% 
+  dplyr::mutate(mean_l = dgen::row_mean(l1, l2, l3)) %>% 
+  dplyr::select(l1, l2, l3, mean_l)
+```
+
+
+#### Likert scale variables with *non-ignored* missing data 
+
+* maxmiss_n is set to 0. If a case has **no** non-missing values, then the mean is calculated; otherwise, NA. This is the default.
+
+
+```{r}
+df1 %>% 
+  dplyr::mutate(mean_lm = dgen::row_mean(lm1, lm2, lm3,
+                                         maxmiss_n = 0)) %>% 
+  dplyr::select(lm1, lm2, lm3, mean_lm)
+
+```
+
+#### Likert scale variables with *ignored* missing data (unless missing on all variables)
+
+*  There are 3 variables, so maxmiss_n it set to 2. As long as a case has a non-missing value on at least 3 - 2 = 1 variables, then the mean is calculated.
+
+
+```{r}
+df1 %>% 
+  dplyr::mutate(mean_lm = dgen::row_mean(lm1, lm2, lm3,
+                                         maxmiss_n = 2)) %>% 
+  dplyr::select(lm1, lm2, lm3, mean_lm)
+```
+
+
+
 
