@@ -1,4 +1,0 @@
-"0","call(f, quote(A), quote(dig))       # round(A)
-"
-"1","round(A, dig)
-"

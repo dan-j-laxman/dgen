@@ -1,5 +1,0 @@
-"0","lapply(values,
-       FUN = rowSums())
-"
-"2","Error in is.data.frame(x) : argument ""x"" is missing, with no default
-"

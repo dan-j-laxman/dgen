@@ -1,7 +1,0 @@
-"0","      df.count <- data.frame()"
-"0","      for (i in values ){"
-"0","        df.count$i = rowSums(df3 == i, na.rm = TRUE)"
-"0","      }"
-"2","Error in `$<-.data.frame`(`*tmp*`, ""i"", value = c(0, 1, 0, 0, 1, 0, 0,  : 
-  replacement has 1000 rows, data has 0
-"

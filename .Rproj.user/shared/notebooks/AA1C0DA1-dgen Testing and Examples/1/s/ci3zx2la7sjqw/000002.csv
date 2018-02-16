@@ -1,0 +1,7 @@
+"0","df1 %>% "
+"0","  dplyr::mutate(count_l_is_lt_5 = dgen::row_less_count(l1, l2, l3,"
+"0","                                                       value = 5,"
+"0","                                                       maxmiss_n = 4))"
+"2","Error in mutate_impl(.data, dots) : 
+  Evaluation error: Number of maximum missing values exceeds number of variables.
+"

@@ -1,0 +1,2 @@
+"0","df1 %>% dplyr::mutate(count_nm_is_cat = dgen::row_any_count(nm1, nm2, nm3, value = ""cat"", ignoreNA = FALSE, ignoreallNA = FALSE)) %>% "
+"0","  dplyr::select(nm1, nm2, nm3, count_nm_is_cat)"
