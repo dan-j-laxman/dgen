@@ -6,7 +6,7 @@ output: html_notebook
 ## Setup
 ```{r}
 library(tidyverse)
-#devtools::install_github("dan-j-laxman/dgen")
+# devtools::install_github("dan-j-laxman/dgen")
 library(dgen)
 ```
 
@@ -228,7 +228,7 @@ df1 %>%
 ```{r}
 df1 %>%
   dplyr::mutate(count_l_is_1 = dgen::row_any_count(l1, l2, l3, 
-                                                   value = "1")) %>% 
+                                                   values = c("3", "5"))) %>% 
   dplyr::select(l1, l2, l3, count_l_is_1)
 ```
 
@@ -241,7 +241,7 @@ df1 %>%
 ```{r}
 df1 %>% 
   dplyr::mutate(count_lm_is_1 = dgen::row_any_count(lm1, lm2, lm3, 
-                                                    value = "1", 
+                                                    values = c("3", "5"), 
                                                     maxmiss_n = 0)) %>% 
   dplyr::select(lm1, lm2, lm3, count_lm_is_1) 
 ```
@@ -254,7 +254,7 @@ df1 %>%
 ```{r}
 df1 %>% 
   dplyr::mutate(count_lm_is_1 = dgen::row_any_count(lm1, lm2, lm3, 
-                                                    value = "1", 
+                                                    values = c("3", "5"), 
                                                     maxmiss_n = 2)) %>% 
   dplyr::select(lm1, lm2, lm3, count_lm_is_1) 
 ```
@@ -266,7 +266,7 @@ df1 %>%
 ```{r}
 df1 %>% 
   dplyr::mutate(count_lm_is_1 = dgen::row_any_count(lm1, lm2, lm3, 
-                                                    value = "1", 
+                                                    values = c("3", "5"), 
                                                     maxmiss_n = 3)) %>% 
   dplyr::select(lm1, lm2, lm3, count_lm_is_1) 
 ```
@@ -577,7 +577,7 @@ df1 %>%
   dplyr::mutate(anymatch_ch_is_rock = dgen::row_any_match(ch1, 
                                                           ch2, 
                                                           ch3, 
-                                                          value = "rock")) %>% 
+                                                          values = "rock")) %>% 
   dplyr::select(ch1, 
                 ch2, 
                 ch3, 
@@ -767,5 +767,5 @@ df1 %>%
 ```
 
 
-
+Row sum needs an option for treating missing as 0.
 

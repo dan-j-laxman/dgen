@@ -23,7 +23,7 @@ Vector of length of each input variable
 Vector of length of each input variable
 }
 \description{
-Checks whether the value of any variable in a variable list matches a specified value.
+Checks whether the value of any variable in a variable list matches a specified value or values.
 Returns a value of 1 if at least one variable in the variable list (...) is equal to a
-specified value; 0 or NA otherwise. Includes options for handling missing data.
+specified value or values; 0 or NA otherwise. Includes options for handling missing data.
 }

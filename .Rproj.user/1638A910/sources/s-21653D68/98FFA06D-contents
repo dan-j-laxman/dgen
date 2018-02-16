@@ -163,7 +163,7 @@ row_greater_count =  function(..., value, maxmiss_n = 0){
   }
 
 
-#' Row Greater Count
+#' Row Lesser Count
 #'
 #' For each row, returns the count of variables in the variable list (...) with values greater
 #' than a specified value. Includes options for handling missing data.
@@ -180,7 +180,7 @@ row_greater_count =  function(..., value, maxmiss_n = 0){
 #'
 #' @export
 
-row_less_count =  function(..., value, maxmiss_n = 0){
+row_lesser_count =  function(..., value, maxmiss_n = 0){
 
   require(tidyverse)
 
@@ -246,9 +246,9 @@ row_less_count =  function(..., value, maxmiss_n = 0){
 
 #' Row Any Match
 #'
-#' Checks whether the value of any variable in a variable list matches a specified value.
+#' Checks whether the value of any variable in a variable list matches a specified value or values.
 #' Returns a value of 1 if at least one variable in the variable list (...) is equal to a
-#' specified value; 0 or NA otherwise. Includes options for handling missing data.
+#' specified value or values; 0 or NA otherwise. Includes options for handling missing data.
 #'
 #' @param ... List of variables over which to check for a match (no limit
 #' on number of variables)

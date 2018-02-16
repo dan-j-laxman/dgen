@@ -3,7 +3,7 @@
 export(row_any_count)
 export(row_any_match)
 export(row_greater_count)
-export(row_less_count)
+export(row_lesser_count)
 export(row_mean)
 export(row_nmiss)
 export(row_nvalid)
