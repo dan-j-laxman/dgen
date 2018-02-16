@@ -6,7 +6,7 @@ output: html_notebook
 ## Setup
 ```{r}
 library(tidyverse)
-# devtools::install_github("dan-j-laxman/dgen")
+devtools::install_github("dan-j-laxman/dgen", force = TRUE)
 library(dgen)
 ```
 
