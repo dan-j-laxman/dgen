@@ -14,7 +14,7 @@ library(dgen)
 
 * dgen, or dplyr generator, is intended to be used within the dplyr::mutate command to generate a new variable that is a combination of other variables.
 
-# dgen functions:
+# dgen functions
 
 ## dgen::row_any_count(..., values, maxmiss_n = 0)
 
