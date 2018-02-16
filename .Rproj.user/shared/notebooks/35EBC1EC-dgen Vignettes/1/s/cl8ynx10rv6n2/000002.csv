@@ -1,6 +1,0 @@
-"0","df1 %>% "
-"0","  dplyr::mutate(mean_l = dgen::row_mean(l1, l2, l3,"
-"0","                                        maxmiss_n = -2))"
-"2","Error in mutate_impl(.data, dots) : 
-  Evaluation error: Negative number of maximum missing values is not allowed.
-"

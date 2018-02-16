@@ -1,7 +1,0 @@
-"0","df1 %>% "
-"0","  dplyr::mutate(mean_l = dgen::row_mean(l1, l2, l3,"
-"0","                                        maxmiss_n = 3))"
-"2","Error in mutate_impl(.data, dots) : 
-  Evaluation error: Number of maximum missing values is equal to or exceeds number of variables. A
-           mean cannot be computed if values are missing for all variables.
-"

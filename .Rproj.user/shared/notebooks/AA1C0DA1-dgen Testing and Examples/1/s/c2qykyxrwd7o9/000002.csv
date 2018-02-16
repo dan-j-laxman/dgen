@@ -1,0 +1,7 @@
+"0","df1 %>% "
+"0","  dplyr::mutate(sum_l = dgen::row_sum(l1, l2, l3,"
+"0","                                        maxmiss_n = 4))"
+"2","Error in mutate_impl(.data, dots) : 
+  Evaluation error: Number of maximum missing values is equal to or exceeds number of variables. A
+           sum cannot be computed if values are missing for all variables.
+"

@@ -1,6 +1,0 @@
-"0","df1 %>% "
-"0","  dplyr::mutate(count_chm_is_rock = "
-"0","                  dgen::row_any_count(chm1, chm2, chm3, "
-"0","                                      value = ""rock"", "
-"0","                                      ignoreNA = TRUE)) %>% "
-"0","  dplyr::select(chm1, chm2, chm3, count_chm_is_rock)"

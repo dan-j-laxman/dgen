@@ -1,7 +1,0 @@
-"0","df1 %>% "
-"0","  dplyr::mutate(count_l_is_gt_3 = dgen::row_greater_count(l1, l2, l3,"
-"0","                                                       value = ""dog"","
-"0","                                                       maxmiss_n = 2))"
-"2","Error in mutate_impl(.data, dots) : 
-  Evaluation error: Value must be numeric. Note: numeric values should not be placed in parentheses.
-"

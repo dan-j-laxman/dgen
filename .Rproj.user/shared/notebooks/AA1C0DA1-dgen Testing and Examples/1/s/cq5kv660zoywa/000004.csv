@@ -1,0 +1,4 @@
+"0","df1 %>% "
+"0","  dplyr::mutate(anymatch_b_is_1 = dgen::row_any_match(b1, b2, b3, "
+"0","                                                      values = ""1"")) %>% "
+"0","  dplyr::select(b1, b2, b3, anymatch_b_is_1)"

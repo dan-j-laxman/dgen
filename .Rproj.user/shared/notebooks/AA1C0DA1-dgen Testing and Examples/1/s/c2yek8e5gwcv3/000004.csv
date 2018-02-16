@@ -1,3 +1,0 @@
-"0","df1 %>% "
-"0","  dplyr::mutate(mean_l = dgen::row_mean(l1, l2, l3)) %>% "
-"0","  dplyr::select(l1, l2, l3, mean_l)"

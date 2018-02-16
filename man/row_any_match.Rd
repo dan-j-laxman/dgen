@@ -10,7 +10,8 @@ row_any_match(..., values, maxmiss_n = 0)
 \item{...}{List of variables over which to check for a match (no limit
 on number of variables)}
 
-\item{values}{Specified value or values to count; can be numeric, nominal, or character}
+\item{values}{Specified value or values to count; can be numeric, nominal, or character. Must
+be placed in quotes.}
 
 \item{maxmiss_n}{Maximum number of missing values allowed in the variables list in
 order to return a value; default is 0. For each row, if # of missing values <= maxmiss_n,

@@ -1,0 +1,9 @@
+"0","```r
+iris %>%
+  dplyr::group_by(Species) %>% 
+  dplyr::summarize(mSepal.Width = mean(Sepal.Width)) %>% 
+    mutate(Species = fct_reorder(Species, mSepal.Width)) %>%
+    ggplot() +
+    aes(Species, mSepal.Width, color = Species) +
+    geom_point()
+```"

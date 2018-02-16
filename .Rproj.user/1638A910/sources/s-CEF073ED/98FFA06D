@@ -5,17 +5,17 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "335389390",
     "id" : "98FFA06D",
-    "lastKnownWriteTime" : 1518818265,
-    "last_content_update" : 1518818265348,
+    "lastKnownWriteTime" : 1518820968,
+    "last_content_update" : 1518820968493,
     "path" : "C:/Users/dlaxman2/Desktop/Box Sync/Dan VI/Analyses_in_R/dgen/R/dgen.R",
     "project_path" : "R/dgen.R",
     "properties" : {
-        "cursorPosition" : "1,2",
+        "cursorPosition" : "257,0",
         "docOutlineSize" : "78",
         "docOutlineVisible" : "1",
-        "scrollLine" : "0"
+        "scrollLine" : "244"
     },
     "relative_order" : 1,
     "source_on_save" : false,

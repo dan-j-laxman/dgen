@@ -1,7 +1,0 @@
-"0","df1 %>% "
-"0","  dplyr::mutate(count_l_is_1 = dgen::row_any_count(l1, l2, l3, "
-"0","                                                   value = ""1"","
-"0","                                                   maxmiss_n = -2))"
-"2","Error in mutate_impl(.data, dots) : 
-  Evaluation error: Negative number of maximum missing values is not allowed.
-"

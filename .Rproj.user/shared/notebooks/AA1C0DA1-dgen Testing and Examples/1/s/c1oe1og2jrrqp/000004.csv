@@ -1,0 +1,3 @@
+"0","df1 %>% "
+"0","  dplyr::mutate(nvalid_chm = dgen::row_nvalid(chm1, chm2, chm3)) %>% "
+"0","  dplyr::select(chm1, chm2, chm3, nvalid_chm)"

@@ -1,0 +1,25 @@
+"0","```r
+```r
+# Function
+
+sum_n =  function(..., n){
+  
+    x = ifelse(sum(is.na(c(...))) <= n,
+             sum(..., na.rm = TRUE),
+             NA) 
+
+    return(x)
+    
+}
+
+count_na =  function(..., n){
+  
+      x = sum(is.na(c(...)))
+
+    return(x)
+  
+}
+
+
+```
+```"

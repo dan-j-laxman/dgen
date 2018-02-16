@@ -1,0 +1,3 @@
+"0","df1 %>% "
+"0","  dplyr::mutate(nmiss_l = dgen::row_nmiss(l1, l2, l3)) %>% "
+"0","  dplyr::select(l1, l2, l3, nmiss_l)"

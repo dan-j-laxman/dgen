@@ -253,7 +253,8 @@ row_less_count =  function(..., value, maxmiss_n = 0){
 #'
 #' @param ... List of variables over which to check for a match (no limit
 #' on number of variables)
-#' @param values Specified value or values to count; can be numeric, nominal, or character
+#' @param values Specified value or values to count; can be numeric, nominal, or character. Must
+#' be placed in quotes.
 #' @param maxmiss_n Maximum number of missing values allowed in the variables list in
 #' order to return a value; default is 0. For each row, if # of missing values <= maxmiss_n,
 #' then whether (1) or not (0) there is a match is returned using the remaining variables with
@@ -339,6 +340,46 @@ row_any_match =  function(..., values, maxmiss_n = 0){
 
 
 
+#' Row Missing
+#'
+#' Counts the number of missing values within each row.
+#'
+#' @param ... Variables over which to count missing values (no limit on number of variables)
+#' @return Vector of length of each input variable
+#'
+#' @export
+
+row_nmiss =  function(...){
+
+  x = rowSums(is.na(cbind(...)))
+
+  return(x)
+
+}
+
+
+
+#' Row Non-Missing
+#'
+#' Counts the number of non-missing values within each row.
+#'
+#' @param ... Variables over which to count non-missing values (no limit on number of variables)
+#' @return Vector of length of each input variable
+#'
+#' @export
+
+row_nvalid =  function(...){
+
+  x = rowSums(!is.na(cbind(...)))
+
+  return(x)
+
+}
+
+
+
+
+
 #' Row Mean
 #'
 #' Calculates the average value across variables within each row. Includes an option for
@@ -412,43 +453,6 @@ row_mean =  function(..., maxmiss_n = 0){
 
 
 
-
-
-#' Row Missing
-#'
-#' Counts the number of missing values within each row.
-#'
-#' @param ... Variables over which to count missing values (no limit on number of variables)
-#' @return Vector of length of each input variable
-#'
-#' @export
-
-row_nmiss =  function(...){
-
-  x = rowSums(is.na(cbind(...)))
-
-  return(x)
-
-}
-
-
-
-#' Row Non-Missing
-#'
-#' Counts the number of non-missing values within each row.
-#'
-#' @param ... Variables over which to count non-missing values (no limit on number of variables)
-#' @return Vector of length of each input variable
-#'
-#' @export
-
-row_nvalid =  function(...){
-
-  x = rowSums(!is.na(cbind(...)))
-
-  return(x)
-
-}
 
 
 

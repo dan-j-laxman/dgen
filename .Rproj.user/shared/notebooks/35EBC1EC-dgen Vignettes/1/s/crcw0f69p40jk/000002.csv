@@ -1,4 +1,0 @@
-"0","df1 %>%"
-"0","  dplyr::mutate(count_l_is_lt_5 = dgen::row_less_count(l1, l2, l3,"
-"0","                                                       value = 5)) %>% "
-"0","  dplyr::select(l1, l2, l3, count_l_is_lt_5)"

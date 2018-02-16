@@ -1,0 +1,4 @@
+"0","df1 %>% dplyr::mutate(count_nm_is_mouse = dgen::row_any_count(nm1, nm2, nm3, "
+"0","                                                            values = ""mouse"", "
+"0","                                                            maxmiss_n = 2)) %>% "
+"0","  dplyr::select(nm1, nm2, nm3, count_nm_is_mouse)"

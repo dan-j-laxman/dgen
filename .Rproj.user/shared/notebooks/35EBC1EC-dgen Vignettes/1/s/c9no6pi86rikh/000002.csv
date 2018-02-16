@@ -1,6 +1,0 @@
-"0","df1 %>% "
-"0","  dplyr::mutate(anymatch_b_is_1 = "
-"0","                  dgen::row_any_match(bm1, bm2, bm3, "
-"0","                                      value = ""1"", "
-"0","                                      ignoreNA = FALSE)) %>% "
-"0","  dplyr::select(bm1, bm2, bm3, anymatch_b_is_1)"

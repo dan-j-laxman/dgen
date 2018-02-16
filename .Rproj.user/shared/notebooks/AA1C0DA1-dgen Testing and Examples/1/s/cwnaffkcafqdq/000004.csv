@@ -1,0 +1,5 @@
+"0","df1 %>% "
+"0","  dplyr::mutate(count_cm_is_gt_3 = dgen::row_greater_count(cm1, cm2, cm3, "
+"0","                                                    value = 3, "
+"0","                                                    maxmiss_n = 3)) %>% "
+"0","  dplyr::select(cm1, cm2, cm3, count_cm_is_gt_3) "
