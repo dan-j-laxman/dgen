@@ -1,5 +1,5 @@
-"0","library(tidyverse)"
-"0","devtools::install_github(""dan-j-laxman/dgen"")"
+"0","devtools::install_github(""dan-j-laxman/dgen"", force = TRUE)
+"
 "2","Downloading GitHub repo dan-j-laxman/dgen@master
 from URL https://api.github.com/repos/dan-j-laxman/dgen/zipball/master
 "
@@ -7,7 +7,7 @@ from URL https://api.github.com/repos/dan-j-laxman/dgen/zipball/master
 "
 "2","""C:/PROGRA~1/R/R-34~1.2/bin/x64/R"" --no-site-file --no-environ --no-save  \
   --no-restore --quiet CMD INSTALL  \
-  ""C:/Users/dlaxman2/AppData/Local/Temp/Rtmp2lQlI4/devtools145012421f45/dan-j-laxman-dgen-c1325fa""  \
+  ""C:/Users/dlaxman2/AppData/Local/Temp/RtmpoZcxSH/devtools2a586b561fe2/dan-j-laxman-dgen-97ec08f""  \
   --library=""C:/Users/dlaxman2/Documents/R/win-library/3.4""  \
   --install-tests 
 "
@@ -33,6 +33,3 @@ from URL https://api.github.com/repos/dan-j-laxman/dgen/zipball/master
 "
 "1","* DONE (dgen)
 "
-"2","Reloading installed dgen
-"
-"0","library(dgen)"

@@ -163,9 +163,9 @@ row_greater_count =  function(..., value, maxmiss_n = 0){
   }
 
 
-#' Row Lesser Count
+#' Row Less Count
 #'
-#' For each row, returns the count of variables in the variable list (...) with values greater
+#' For each row, returns the count of variables in the variable list (...) with values less
 #' than a specified value. Includes options for handling missing data.
 #'
 #' @param ... Variable list over which to count instances equal to value (no limit on number of
@@ -180,7 +180,7 @@ row_greater_count =  function(..., value, maxmiss_n = 0){
 #'
 #' @export
 
-row_lesser_count =  function(..., value, maxmiss_n = 0){
+row_less_count =  function(..., value, maxmiss_n = 0){
 
   require(tidyverse)
 

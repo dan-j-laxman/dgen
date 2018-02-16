@@ -19,6 +19,14 @@ library(dgen)
 ## dgen::row_any_count(..., values, maxmiss_n = 0)
 
   * For each row, returns the count of variables in the variable list (...) equal to a specified value or values. Includes options for handling missing data.
+
+## dgen::row_greater_count(..., value, maxmiss_n = 0)
+
+  * For each row, returns the count of variables in the variable list (...) with values greater than a specified value. Includes options for handling missing data.
+  
+## dgen::row_less_count(..., value, maxmiss_n = 0)
+
+  * For each row, returns the count of variables in the variable list (...) with values less than a specified value. Includes options for handling missing data.
     
 ## dgen::row_any_match(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
 

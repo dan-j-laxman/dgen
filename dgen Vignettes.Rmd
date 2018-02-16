@@ -6,7 +6,7 @@ output: html_notebook
 ## Setup
 ```{r}
 library(tidyverse)
-# devtools::install_github("dan-j-laxman/dgen")
+devtools::install_github("dan-j-laxman/dgen", force = TRUE)
 library(dgen)
 ```
 
@@ -16,13 +16,21 @@ library(dgen)
 
 # dgen functions:
 
-## dgen::row_any_count(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
+## dgen::row_any_count(..., values, maxmiss_n = 0)
 
-  * For each row, returns the count of variables in the variable list (...) equal to a specified value. Includes options for handling missing data.
+  * For each row, returns the count of variables in the variable list (...) equal to a specified value or values. Includes options for handling missing data.
+
+## dgen::row_greater_count(..., value, maxmiss_n = 0)
+
+  * For each row, returns the count of variables in the variable list (...) with values greater than a specified value. Includes options for handling missing data.
+  
+## dgen::row_less_count(..., value, maxmiss_n = 0)
+
+  * For each row, returns the count of variables in the variable list (...) with values less than a specified value. Includes options for handling missing data.
     
 ## dgen::row_any_match(..., value, ignoreNA = TRUE, ignoreAllNA = FALSE)
 
-  * Returns a 1 if at least one of variable in the variable list (...) is equal to a specified value across variables within each row. Returns a value of 1 if at least one variable equals the value; 0 or NA otherwise. Includes options for handling missing data.
+  * Checks whether the value of any variable in a variable list matches a specified value or values. Returns a value of 1 if at least one variable in the variable list (...) is equal to a specified value or values; 0 or NA otherwise. Includes options for handling missing data.
     
 ## dgen::row_means(..., n = 0)
 
