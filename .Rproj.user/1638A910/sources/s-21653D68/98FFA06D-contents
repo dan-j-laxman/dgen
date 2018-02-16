@@ -415,7 +415,7 @@ row_mean =  function(..., maxmiss_n = 0){
 
 #' Row Missing
 #'
-#' Counts the number of missing values across variables (columns) within each row.
+#' Counts the number of missing values within each row.
 #'
 #' @param ... Variables over which to count missing values (no limit on number of variables)
 #' @return Vector of length of each input variable
@@ -434,7 +434,7 @@ row_nmiss =  function(...){
 
 #' Row Non-Missing
 #'
-#' Counts the number of non-missing values across variables (columns) within each row.
+#' Counts the number of non-missing values within each row.
 #'
 #' @param ... Variables over which to count non-missing values (no limit on number of variables)
 #' @return Vector of length of each input variable

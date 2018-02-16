@@ -13,5 +13,5 @@ row_nmiss(...)
 Vector of length of each input variable
 }
 \description{
-Counts the number of missing values across variables (columns) within each row.
+Counts the number of missing values within each row.
 }
